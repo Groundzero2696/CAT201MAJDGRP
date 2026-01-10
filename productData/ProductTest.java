@@ -15,7 +15,7 @@ public class ProductTest {
         Product firstProduct = manager.getProducts().get(0);
         firstProduct.increaseQuantity();
         firstProduct.setDescription("Updated description for the product.");
-        manager.updateProduct(firstProduct, firstProduct);  // Update the product in the manager
+        manager.updateProduct(firstProduct, firstProduct);
 
         System.out.println("Products after update:");
         for (Product product : manager.getProducts()) {
