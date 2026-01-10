@@ -1,7 +1,7 @@
 const Header = () => (
   <div className="header">
     <div className="top-row">
-      <div className="logo">thryft</div>
+      <div className="logo">theriftstore</div>
 
       <div className="search-wrapper">
         <input placeholder="Find your next treasure from 40,000+ pre-loved items" />
@@ -110,3 +110,4 @@ const App = () => {
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
