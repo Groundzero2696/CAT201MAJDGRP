@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+
+  <meta charset="UTF-8" />
+  <title>Category Page</title>
+
+  <!-- React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function Sidebar() {
+  return (
+    <aside className="sidebar">
+      <div className="filters-header">
+        <h2>Filters</h2>
+      </div>
+
+      <div className="filter-group">
+        <h3>Book Genre</h3>
+        <label><input type="checkbox" /> Contemporary</label>
+        <label><input type="checkbox" /> Drama</label>
+        <label><input type="checkbox" /> Fantasy</label>
+        <label><input type="checkbox" /> Horror</label>
+        <label><input type="checkbox" /> Literary Fiction</label>
+      </div>
+
+      <div className="filter-group">
+        <h3>Book Topic</h3>
+        <label><input type="checkbox" /> Action</label>
+        <label><input type="checkbox" /> Adventure</label>
+        <label><input type="checkbox" /> Asian Literature</label>
+      </div>
+    </aside>
+  );
+}
+
+function ProductCard({ title, author, price, image, sale }) {
+  return (
+    <div className="product-card">
+
+      <div className="image-wrapper">
+        <img src={image} alt={title} />
+
+        <div className="icon-overlay">
+          <button className="icon-btn" title="Add to Wishlist">
+            <i className="fa-regular fa-heart"></i>
+          </button>
+
+          <button className="icon-btn" title="Add to Cart">
+            <i className="fa-solid fa-cart-shopping"></i>
+          </button>
+        </div>
+      </div>
+
+      <h5>{title}</h5>
+      <p>{author}</p>
+      <span className={sale ? "price sale" : "price"}>
+        RM{price}.00 MYR
+      </span>
+
+    </div>
+  );
+}
+
+function App() {
+  const category = "Books";
+
+  const products = [
+    { title: "If It Bleeds", author: "Stephen King", price: 34, image: "images/book1.jpg" },
+    { title: "My Heart Will Find You", author: "Jude Deveraux", price: 30, image: "images/book2.jpg", sale: true },
+    { title: "The Dead Romantics", author: "Ashley Poston", price: 37, image: "images/book3.jpg" },
+    { title: "The Sentence", author: "Louise Erdrich", price: 71, image: "images/book4.jpg" },
+    { title: "Exit West", author: "Mohsin Hamid", price: 34, image: "images/book5.jpg" }
+  ];
+
+  return (
+    <div className="container">
+
+      <section className="category-header">
+        <nav className="breadcrumb">Home &gt; {category}</nav>
+        <h1 className="category-title">{category}</h1>
+        <p className="category-description">
+          Explore our collection of books across multiple genres and discover stories for every reader.
+        </p>
+      </section>
+
+      <div className="top-bar">
+        <span className="results-count">2746 Results</span>
+        <select className="sort-select">
+          <option>Sort: Featured</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+        </select>
+      </div>
+
+      <div className="layout">
+        <Sidebar />
+
+        <main>
+          <section className="product-grid">
+            {products.map((p, index) => (
+              <ProductCard key={index} {...p} />
+            ))}
+          </section>
+        </main>
+      </div>
+
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+</script>
+
+</body>
+</html>
