@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Page</title>
+
+  <!-- React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function ProductPage() {
+      const [qty, setQty] = React.useState(1);
+
+      const handleZoom = (e) => {
+        const img = e.target;
+        const rect = img.getBoundingClientRect();
+
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        img.style.transformOrigin = `${x}% ${y}%`;
+        img.style.transform = "scale(2)";
+      };
+
+      const resetZoom = (e) => {
+        e.target.style.transform = "scale(1)";
+      };
+
+      return (
+        <div className="container">
+          {/* IMAGE */}
+          <div className="image-box">
+            <img
+              src="product.jpg"
+              alt="Product"
+              onMouseMove={handleZoom}
+              onMouseLeave={resetZoom}
+            />
+          </div>
+
+          {/* DETAILS */}
+          <div className="details">
+            <h1>Simon & Garfunkel / The Beatles Song Book</h1>
+
+            <p className="old-price">RM82.00 MYR</p>
+            <p className="new-price">
+              Now RM78.00 MYR <span>5% off</span>
+            </p>
+
+            <div className="quantity">
+              <button onClick={() => setQty(Math.max(1, qty - 1))}>−</button>
+              <span>{qty}</span>
+              <button onClick={() => setQty(qty + 1)}>+</button>
+            </div>
+
+            <button className="add-cart">ADD TO CART</button>
+
+            <div className="description">
+              <h3>Description</h3>
+              <p>
+                Discover the enchanting melodies of Simon & Garfunkel and
+                The Beatles, beautifully arranged and performed in this
+                timeless vinyl collection. A perfect choice for classic
+                music lovers and collectors.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root"))
+      .render(<ProductPage />);
+  </script>
+
+</body>
+</html>
