@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+  <display-name>ThriftStore Backend</display-name>
+
+  <filter>
+    <filter-name>CorsFilter</filter-name>
+    <filter-class>com.thriftshop.web.filter.CorsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CorsFilter</filter-name>
+    <url-pattern>/api/*</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>ProductsServlet</servlet-name>
+    <servlet-class>com.thriftshop.web.ProductsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductsServlet</servlet-name>
+    <url-pattern>/api/products</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>com.thriftshop.web.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/api/cart</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CartItemsServlet</servlet-name>
+    <servlet-class>com.thriftshop.web.CartItemsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartItemsServlet</servlet-name>
+    <url-pattern>/api/cart/items/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ShippingMethodsServlet</servlet-name>
+    <servlet-class>com.thriftshop.web.ShippingMethodsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShippingMethodsServlet</servlet-name>
+    <url-pattern>/api/shipping-methods</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>PaymentMethodsServlet</servlet-name>
+    <servlet-class>com.thriftshop.web.PaymentMethodsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PaymentMethodsServlet</servlet-name>
+    <url-pattern>/api/payment-methods</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>OrdersServlet</servlet-name>
+    <servlet-class>com.thriftshop.web.OrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrdersServlet</servlet-name>
+    <url-pattern>/api/orders</url-pattern>
+  </servlet-mapping>
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
+</web-app>

@@ -1,0 +1,4 @@
+id,name,price,condition,size,stock,imageUrl
+sku-vie-001,Viesteni Polo,45.00,Good,M,8,https://images.unsplash.com/photo-1520975958225-2fdf6f5f8b77?auto=format&fit=crop&w=500&q=60
+sku-cla-002,Classics T-Shirt,19.00,Like New,L,12,https://images.unsplash.com/photo-1520975682030-6e5c4c6df7e6?auto=format&fit=crop&w=500&q=60
+sku-den-003,Denim Jacket,79.00,Fair,XL,3,https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=60
