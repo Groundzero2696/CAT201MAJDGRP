@@ -1,10 +1,17 @@
 package productData;
 
+import java.util.UUID;
+
 public class Accessory extends Product {
 
     private String material;
     private String brand;
 
+    public Accessory(UUID id, String title, double oldPrice, Double newPrice, String description, int quantity, String material, String brand) {
+        super(id,title, oldPrice, newPrice, description, quantity, "Accessory");
+        this.material = material;
+        this.brand = brand;
+    }
     public Accessory(String title, double oldPrice, Double newPrice, String description, int quantity, String material, String brand) {
         super(title, oldPrice, newPrice, description, quantity, "Accessory");
         this.material = material;

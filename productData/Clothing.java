@@ -1,8 +1,17 @@
 package productData;
+
+import java.util.UUID;
+
 public class Clothing extends Product {
 
     private String size;
     private String color;
+
+    public Clothing(UUID id, String title, double oldPrice, Double newPrice, String description, int quantity, String size, String color) {
+        super(id,title, oldPrice, newPrice, description, quantity, "Clothing");
+        this.size = size;
+        this.color = color;
+    }
 
     public Clothing(String title, double oldPrice, Double newPrice, String description, int quantity, String size, String color) {
         super(title, oldPrice, newPrice, description, quantity, "Clothing");

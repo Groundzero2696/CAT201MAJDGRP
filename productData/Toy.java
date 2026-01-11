@@ -1,10 +1,17 @@
 package productData;
 
+import java.util.UUID;
+
 public class Toy extends Product {
 
     private String ageGroup;
     private boolean isBatteryOperated;
 
+    public Toy(UUID id, String title, double oldPrice, Double newPrice, String description, int quantity, String ageGroup, boolean isBatteryOperated) {
+        super(id,title, oldPrice, newPrice, description, quantity, "Toy");
+        this.ageGroup = ageGroup;
+        this.isBatteryOperated = isBatteryOperated;
+    }
     public Toy(String title, double oldPrice, Double newPrice, String description, int quantity, String ageGroup, boolean isBatteryOperated) {
         super(title, oldPrice, newPrice, description, quantity, "Toy");
         this.ageGroup = ageGroup;

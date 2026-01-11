@@ -1,7 +1,10 @@
 package productData;
 
+import java.util.UUID;
+
 public class Product {
 
+    private UUID id;
     private String title;
     private double oldPrice;
     private Double newPrice;
@@ -11,21 +14,32 @@ public class Product {
 
     // Constructor
     public Product () {
+        this.id = generateUniqueId();
         this.title = "Product name";
         this.oldPrice = 0.0;
         this.newPrice = null;
         this.description = "Lorem ipsum dolor sit amet consectetur adipiscing elit.";
         this.quantity = 0;
-        this.type = "Generic"; // Default type
+        this.type = "Generic";
     }
 
-    public Product(String title, double oldPrice, Double newPrice, String description, int quantity, String type) {
+    public Product ( String title, double oldPrice, Double newPrice, String description, int quantity, String type) {
+        this.id = generateUniqueId();
         this.title = title;
         this.oldPrice = oldPrice;
         this.newPrice = newPrice;
         this.description = description;
         this.quantity = quantity;
-        this.type = type; // Set the type
+        this.type = type;
+    }
+
+    public Product (UUID id, String title, double oldPrice, Double newPrice, String description, int quantity, String type) {
+        this.id = id;
+        this.oldPrice = oldPrice;
+        this.newPrice = newPrice;
+        this.description = description;
+        this.quantity = quantity;
+        this.type = type;
     }
 
     public String getTitle() {
@@ -89,6 +103,16 @@ public class Product {
         this.type = type;
     }
 
+    private UUID generateUniqueId() {
+         return UUID.randomUUID();
+    }
+    public UUID getId() {
+        return id;
+    }
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
 
     @Override
     public String toString() {
@@ -96,6 +120,6 @@ public class Product {
                 "\nOld Price: RM" + oldPrice +
                 "\nDescription: " + description +
                 "\nQuantity: " + quantity +
-                "\nType: " + type; // Display the type
+                "\nType: " + type;
     }
 }
