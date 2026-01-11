@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  color: #111;
+}
+
+/* HEADER */
+.header {
+  border-bottom: 1px solid #eee;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 24px;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #0a7a3f;
+  cursor: pointer;
+}
+
+.search-wrapper {
+  flex: 1;
+  background: #f3f3f3;
+  padding: 8px 12px;
+}
+
+.search-wrapper input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.icon-group {
+  display: flex;
+  gap: 18px;
+}
+
+.icon-item {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* CATEGORY BAR */
+.category-bar {
+  display: flex;
+  gap: 28px;
+  padding: 10px 24px;
+  border-top: 1px solid #eee;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+              url("../images/book1.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 90px 20px;
+}
+
+/* SECTIONS */
+.section {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.product-card {
+  border: 1px solid #eee;
+  padding: 12px;
+  cursor: pointer;
+  transition: box-shadow .2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+.image-wrapper {
+  height: 280px;
+  background: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.product-img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

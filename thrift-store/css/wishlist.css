@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f3f4f6;
+  font-family: Arial, sans-serif;
+  color: #111;
+}
+
+.wishlist-wrapper {
+  max-width: 1200px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.wishlist-container {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 30px;
+}
+
+/* LEFT SIDE */
+.preview-card {
+  align-self: flex-start;
+}
+
+.preview-image {
+  width: 100%;
+  max-width: 420px;
+  height: 520px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #eee;
+}
+
+.preview-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-title {
+  font-size: 26px;
+  margin: 16px 0 6px;
+  font-weight: 500;
+}
+
+.preview-price {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.preview-desc {
+  font-size: 14px;
+  color: #777;
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+.preview-actions {
+  margin-top: 20px;
+}
+
+.add-cart {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 14px 26px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE */
+.list-card {
+  border-left: 1px solid #eee;
+  padding-left: 24px;
+}
+
+.list-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.wishlist-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.wishlist-item img {
+  width: 60px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.item-info h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.item-info span {
+  font-size: 13px;
+  color: #777;
+}
+
+/* ICON BUTTONS */
+.item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #444;
+}
+
+.icon-btn:hover {
+  color: #000;
+}
+
+.icon-btn.delete {
+  color: #999;
+}
+
+.icon-btn.delete:hover {
+  color: #d11a2a;
+}
