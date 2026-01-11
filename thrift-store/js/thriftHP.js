@@ -1,4 +1,4 @@
-// ===== NAVIGATION FUNCTIONS =====
+// ===== NAVIGATION =====
 function goHome() {
   window.location.href = "indexHP.html";
 }
@@ -15,24 +15,43 @@ function goToWishlist() {
   window.location.href = "wishlist.html";
 }
 
-// ===== MAIN COMPONENT =====
+function goToCheckout() {
+  window.location.href = "checkout.html";
+}
+
+// ===== MAIN APP =====
 function App() {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      window.location.href = `listing.html?search=${encodeURIComponent(searchQuery)}`;
+    }
+  };
+
+  // Filter products by category
+  const books = data.filter(p => p.category === 'books');
+  const menswear = data.filter(p => p.subcategory === 'men');
+  const womenswear = data.filter(p => p.subcategory === 'women');
+  const accessories = data.filter(p => p.category === 'accessories');
+  const toys = data.filter(p => p.category === 'toys');
+
   return (
     <div>
-      {/* ===== HEADER ===== */}
+      {/* HEADER */}
       <header className="header">
         <div className="top-row">
-          <div
-            className="logo"
-            onClick={goHome}
-            style={{ cursor: "pointer" }}
-          >
-            Thrifters4ever
-          
-          </div>
+          <div className="logo" onClick={goHome}>Thrifters4ever</div>
 
           <div className="search-wrapper">
-            <input type="text" placeholder="Search for items..." />
+            <i className="fa-solid fa-magnifying-glass"></i>
+            <input 
+              type="text" 
+              placeholder="Search for items..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={handleSearch}
+            />
           </div>
 
           <div className="icon-group">
@@ -40,92 +59,172 @@ function App() {
               <i className="fa-regular fa-user"></i>
               <span>Account</span>
             </div>
-
-            <div
-              className="icon-item"
-              onClick={goToWishlist}
-              style={{ cursor: "pointer" }}
-            >
+            <div className="icon-item" onClick={goToWishlist}>
               <i className="fa-regular fa-heart"></i>
               <span>Wishlist</span>
             </div>
-
-            <div className="icon-item">
+            <div className="icon-item" onClick={goToCheckout}>
               <i className="fa-solid fa-cart-shopping"></i>
               <span>Cart</span>
             </div>
           </div>
         </div>
 
-        {/* ===== CATEGORY BAR ===== */}
         <div className="category-bar">
-          <span onClick={() => goToListing("men")}>Men</span>
-          <span onClick={() => goToListing("women")}>Women</span>
-          <span onClick={() => goToListing("vintage")}>Vintage</span>
+          <span onClick={() => goToListing("accessories")}>Accessories</span>
+          <span onClick={() => goToListing("books")}>Books</span>
+          <span onClick={() => goToListing("clothes")}>Clothes</span>
+          <span onClick={() => goToListing("toys")}>Toys</span>
         </div>
       </header>
 
-      {/* ===== HERO ===== */}
+      {/* HERO */}
       <section className="hero">
-        <h1>Thrift Better. Live Better.</h1>
-        <p>Discover unique second-hand fashion</p>
+        <h1>Discover Pre-Loved Books & Fashion</h1>
+        <p>Shop sustainably. Save more.</p>
       </section>
 
-      {/* ===== PRODUCTS ===== */}
-      <section className="section">
-        <h2>Featured Products</h2>
-
-        <div className="product-grid">
-          {data.slice(0, 4).map(product => (
-            <div
-              key={product.id}
-              className="product-card"
-              onClick={() => goToProduct(product.id)}
-              style={{ cursor: "pointer" }}
-            >
-              <div className="image-wrapper">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="product-img"
-                />
-
-                <div
-                  className="wishlist-icon"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goToWishlist();
-                  }}
-                >
+      {/* BEST SELLING BOOKS */}
+      <section className="product-section">
+        <div className="section-header">
+          <h2>Best Selling Books</h2>
+          <button onClick={() => goToListing('books')}>View All →</button>
+        </div>
+        <div className="product-row">
+          {books.map(product => (
+            <div key={product.id} className="product-card" onClick={() => goToProduct(product.id)}>
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+                <button className="wishlist-icon" onClick={(e) => { e.stopPropagation(); }}>
                   <i className="fa-regular fa-heart"></i>
-                </div>
+                </button>
               </div>
-
-              <h4>{product.name}</h4>
-              <p className="price">${product.price}</p>
-
-              <button
-                className="cart-btn"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  console.log("Add to cart:", product.id);
-                }}
-              >
-                <i className="fa-solid fa-cart-shopping"></i>
-              </button>
+              <div className="product-details">
+                <h4>{product.name}</h4>
+                <p className="price">RM{product.price}</p>
+                <button className="cart-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </button>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
+      {/* MENSWEAR */}
+      <section className="product-section">
+        <div className="section-header">
+          <h2>Menswear</h2>
+          <button onClick={() => goToListing('clothes', 'men')}>View All →</button>
+        </div>
+        <div className="product-row">
+          {menswear.map(product => (
+            <div key={product.id} className="product-card" onClick={() => goToProduct(product.id)}>
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+                <button className="wishlist-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div className="product-details">
+                <h4>{product.name}</h4>
+                <p className="price">RM{product.price}</p>
+                <button className="cart-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WOMEN */}
+      <section className="product-section">
+        <div className="section-header">
+          <h2>Women</h2>
+          <button onClick={() => goToListing('clothes', 'women')}>View All →</button>
+        </div>
+        <div className="product-row">
+          {womenswear.map(product => (
+            <div key={product.id} className="product-card" onClick={() => goToProduct(product.id)}>
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+                <button className="wishlist-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div className="product-details">
+                <h4>{product.name}</h4>
+                <p className="price">RM{product.price}</p>
+                <button className="cart-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ACCESSORIES */}
+      <section className="product-section">
+        <div className="section-header">
+          <h2>Accessories</h2>
+          <button onClick={() => goToListing('accessories')}>View All →</button>
+        </div>
+        <div className="product-row">
+          {accessories.map(product => (
+            <div key={product.id} className="product-card" onClick={() => goToProduct(product.id)}>
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+                <button className="wishlist-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div className="product-details">
+                <h4>{product.name}</h4>
+                <p className="price">RM{product.price}</p>
+                <button className="cart-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* TOYS */}
+      <section className="product-section">
+        <div className="section-header">
+          <h2>Toys</h2>
+          <button onClick={() => goToListing('toys')}>View All →</button>
+        </div>
+        <div className="product-row">
+          {toys.map(product => (
+            <div key={product.id} className="product-card" onClick={() => goToProduct(product.id)}>
+              <div className="product-image">
+                <img src={product.image} alt={product.name} />
+                <button className="wishlist-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div className="product-details">
+                <h4>{product.name}</h4>
+                <p className="price">RM{product.price}</p>
+                <button className="cart-icon" onClick={(e) => { e.stopPropagation(); }}>
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FOOTER */}
       <footer className="footer">
-        <p>© 2026 ThriftStore. All rights reserved.</p>
+        <p>© 2026 Thrifters4ever. All rights reserved.</p>
       </footer>
     </div>
   );
 }
 
-// ===== RENDER =====
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
