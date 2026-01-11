@@ -5,6 +5,7 @@
 
 body {
   margin: 0;
+  background: #fff;
   color: #111;
 }
 
@@ -13,10 +14,11 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+/* TOP ROW */
 .top-row {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   padding: 12px 24px;
 }
 
@@ -27,10 +29,11 @@ body {
   cursor: pointer;
 }
 
+/* SEARCH BAR */
 .search-wrapper {
   flex: 1;
   background: #f3f3f3;
-  padding: 8px 12px;
+  padding: 10px 14px;
 }
 
 .search-wrapper input {
@@ -38,14 +41,19 @@ body {
   border: none;
   background: transparent;
   outline: none;
+  font-size: 14px;
 }
 
+/* ICONS */
 .icon-group {
   display: flex;
-  gap: 18px;
+  gap: 20px;
 }
 
 .icon-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   cursor: pointer;
   font-size: 14px;
 }
@@ -53,27 +61,39 @@ body {
 /* CATEGORY BAR */
 .category-bar {
   display: flex;
-  gap: 28px;
+  gap: 20px;
   padding: 10px 24px;
   border-top: 1px solid #eee;
+  font-size: 14px;
+}
+
+.category-bar span {
+  cursor: pointer;
 }
 
 /* HERO */
 .hero {
-  background: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
-              url("../images/book1.jpg");
-  background-size: cover;
-  background-position: center;
+  background: #8a8a8a;
   color: white;
   text-align: center;
-  padding: 90px 20px;
+  padding: 80px 20px;
 }
 
-/* SECTIONS */
+.hero h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.hero p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* CONTENT */
 .section {
-  padding: 40px 24px;
   max-width: 1200px;
   margin: auto;
+  padding: 40px 24px;
 }
 
 .product-grid {
@@ -86,29 +106,28 @@ body {
   border: 1px solid #eee;
   padding: 12px;
   cursor: pointer;
-  transition: box-shadow .2s;
-}
-
-.product-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
 }
 
 .image-wrapper {
-  height: 280px;
+  height: 260px;
   background: #f6f6f6;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   position: relative;
 }
 
 .product-img {
-  max-height: 100%;
   max-width: 100%;
+  max-height: 100%;
 }
 
 .wishlist-icon {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.price {
+  font-weight: bold;
 }

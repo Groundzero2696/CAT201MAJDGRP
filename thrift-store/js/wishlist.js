@@ -1,58 +1,55 @@
-function Header() {
-  return (
-    <header className="header">
-      <div className="top-row">
-        <div
-          className="logo"
-          onClick={() => window.location.href = "indexHP.html"}
-        >
-          Thrift
-        </div>
-      </div>
-    </header>
-  );
+// ===== NAVIGATION FUNCTIONS =====
+function goHome() {
+  window.location.href = "indexHP.html";
 }
 
+function goToProduct(id) {
+  window.location.href = "product.html?id=" + id;
+}
+
+// ===== TEMP WISHLIST DATA (FRONTEND ONLY) =====
+const wishlistItems = data.slice(0, 3);
+
+// ===== MAIN COMPONENT =====
 function App() {
-  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-  if (wishlist.length === 0) {
-    return (
-      <>
-        <Header />
-        <div className="section">
-          <h2>Your wishlist is empty</h2>
-        </div>
-      </>
-    );
-  }
-
   return (
-    <>
-      <Header />
+    <div className="wishlist-wrapper">
+      <h2>My Wishlist</h2>
 
-      <div className="section">
-        <h2>My Wishlist</h2>
-
-        <div className="product-grid">
-          {wishlist.map(item => (
+      <div className="wishlist-container">
+        <div className="list-card">
+          {wishlistItems.map(item => (
             <div
               key={item.id}
-              className="product-card"
-              onClick={() => window.location.href = `product.html?id=${item.id}`}
+              className="wishlist-item"
+              onClick={() => goToProduct(item.id)}
             >
-              <div className="image-wrapper">
-                <img src={item.image} className="product-img" />
+              <img src={item.image} alt={item.name} />
+
+              <div className="item-info">
+                <h4>{item.name}</h4>
+                <span>${item.price}</span>
               </div>
 
-              <h4>{item.name}</h4>
-              <p className="price">RM{item.price}</p>
+              <div className="item-actions">
+                <button
+                  className="icon-btn delete"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    console.log("Remove:", item.id);
+                  }}
+                >
+                  <i className="fa-solid fa-trash"></i>
+                </button>
+              </div>
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// ===== RENDER =====
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
