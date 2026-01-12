@@ -1,0 +1,8 @@
+p1|Vintage Denim Jacket|Levi's|79.90|women|jackets|Great|true
+p2|Minimalist White Sneakers|Common Projects (Style)|120.00|men|sneakers|Good|true
+p3|Fiction Bestseller Bundle|Mixed|45.00|books|fiction|Good|true
+p4|Jazz Vinyl: Classic Pressing|Blue Note (Style)|98.00|vinyl|jazz|New & Sealed|false
+p5|Pleated Midi Dress|Zara|55.00|women|dresses|Great|true
+p6|Leather Crossbody Bag|Coach (Style)|89.00|women|bags|Good|true
+p7|Graphic Tee|Uniqlo|22.00|men|shirts|Great|true
+p8|Textbook: Intro to Programming|Pearson (Style)|68.00|books|textbooks|Good|true

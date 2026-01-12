@@ -1,0 +1,44 @@
+package app.handler;
+
+import app.http.HttpUtil;
+import app.http.Json;
+import app.service.CartService;
+
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import java.io.IOException;
+import java.util.Map;
+
+public class CartAddHandler implements HttpHandler {
+    private final CartService cartService;
+
+    public CartAddHandler(CartService cartService) { this.cartService = cartService; }
+
+    @Override
+    public void handle(HttpExchange ex) throws IOException {
+        if (HttpUtil.handleOptions(ex)) return;
+
+        if (!"POST".equalsIgnoreCase(ex.getRequestMethod())) {
+            HttpUtil.send(ex, 405, HttpUtil.errorJson("Method not allowed"));
+            return;
+        }
+
+        String body = HttpUtil.readBody(ex);
+        Map<String, String> m = Json.parseFlatObject(body);
+
+        String userId = m.getOrDefault("userId", "demo");
+        String id = m.get("id");
+        String title = m.get("title");
+        String priceStr = m.get("price");
+
+        if (id == null || title == null || priceStr == null) {
+            HttpUtil.send(ex, 400, HttpUtil.errorJson("Missing fields: userId,id,title,price"));
+            return;
+        }
+
+        double price = Double.parseDouble(priceStr);
+        cartService.add(userId, id, title, price);
+
+        HttpUtil.send(ex, 200, HttpUtil.okJson("Added to cart"));
+    }
+}
